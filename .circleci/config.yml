@@ -5,10 +5,10 @@ orbs:
 
 workflows: 
   test-deploy: 
-    context:
-      - slack-secrets
     jobs: 
-      - test
+      - test:
+        context:
+          - slack-secrets
 jobs:
   test:
     docker:
