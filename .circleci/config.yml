@@ -14,6 +14,24 @@ jobs:
     docker:
       - image: cimg/node:17.2.0
     steps:
+      - custom: |
+            {
+              "attachments": [
+                {
+                  "color": "#0abc0a",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "Build process started started :arrow_forward:"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
       - checkout
       - run:
           name: Install deps
@@ -24,4 +42,4 @@ jobs:
       - slack/notify:
           event: fail
           template: basic_fail_1
-          # branch_pattern: master
+          branch_pattern: master
