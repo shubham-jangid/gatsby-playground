@@ -8,9 +8,9 @@ workflows:
     jobs: 
       - test
       - slack/notify:
-        event: pass
-        template: basic_success_1
-        mentions: '@ProductTeam'
+          event: pass
+          template: basic_success_1
+          mentions: '@ProductTeam'
 
 jobs:
   test:
