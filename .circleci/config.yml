@@ -15,7 +15,7 @@ jobs:
       - image: cimg/node:17.2.0
     steps:
       - slack/notify:
-        custom: |
+          custom: |
             {
               "attachments": [
                 {
