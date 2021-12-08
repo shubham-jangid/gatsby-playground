@@ -7,8 +7,8 @@ workflows:
   test-deploy: 
     jobs: 
       - test:
-        context:
-          - slack-secrets
+          context:
+            - slack-secrets
 jobs:
   test:
     docker:
