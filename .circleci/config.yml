@@ -24,8 +24,4 @@ jobs:
       - slack/notify:
           event: fail
           template: basic_fail_1
-          filters:
-              branches:
-                only:
-                  - master
-
+          branch_pattern: master
