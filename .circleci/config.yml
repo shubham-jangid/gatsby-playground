@@ -1,0 +1,46 @@
+version: 2.1
+
+orbs: 
+  slack: circleci/slack@4.5.0
+
+workflows: 
+  test-deploy: 
+    jobs: 
+      - test:
+          context:
+            - slack-secrets
+jobs:
+  test:
+    docker:
+      - image: cimg/node:17.2.0
+    steps:
+      - slack/notify:
+          custom: |
+            {
+              "attachments": [
+                {
+                  "color": "#0abc0a",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "Build process started started :arrow_forward:"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
+      - checkout
+      - run:
+          name: Install deps
+          command: npm i
+      - slack/notify:
+          event: pass
+          template: basic_success_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+          branch_pattern: master
